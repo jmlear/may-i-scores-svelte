@@ -17,7 +17,14 @@
 	$: activePlayer = $players[activeIndex];
 
 	function selectPlayer(index: number) {
+		if (index === activeIndex) return;
+
+		//Auto confirm current player if they have a score entered
 		commitDisplay();
+		if (roundScores[activeIndex] > 0) {
+			confirmed[activeIndex] = true;
+		}
+
 		activeIndex = index;
 		inputDisplay = roundScores[index] === 0 ? '0' : String(roundScores[index]);
 	}
